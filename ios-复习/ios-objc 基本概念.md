@@ -69,4 +69,74 @@
 
 #### block的使用
 
+1. block什么要使用copy
+	
+	* block在创建的时候默认分配在栈上，其本身的作用域就是创建时候的作用域，一旦在创建之外的作用域调用就会导致程序crash，所以使用copy拷贝到堆上。
+	* block创建在栈上，而block的代码中可能会用到了本地的变量，只用拷贝到堆上才能改变这些变量的值。
+	
+2. block为什么不用retain
+	
+	retain只是引用加一，block还是在栈上，当离开作用域，随时都会被系统回收。
+	
+3. 为什么进入block中的对象引用计数需要自动加1
+	
+	block执行的是回调，因此block并不知道其中引用的对象obj会在什么时候会被释放，为了使引用的obj在使用之前不被提前释放，block就对引用的对象obj进行了引用计数加1（retain）
+	
+4. block和函数的关系
 
+	block使用很像函数指针，不过最大的不同是block可以访问block以外、词法作用域以内的外部变量的值。
+	
+	block不仅实现了函数的功能，还能携带函数的执行环境。
+	
+5. block的理解
+
+	block实际上是指向结构体的指针，编译器会将block内部代码生成对应的函数和结构体。
+	
+6. block捕获值
+
+	* 对于非全局、静态变量的基本数据类型，进入block中会做值传递（常量处理）。
+		
+			int n1 = 6;
+			void (^testBlock1)() = ^{
+				NSLog(@"value = %d", n1);
+			};
+			n1 = 20;
+			testBlock1(); // 输出 6
+			
+			// 如果需要对捕获的值进行修改 如果需要在block中对num进行修改，需要加上关键字__block
+			__block int n2 = 6;
+			void (^testBlock2)() = ^{
+				NSLog(@"value = %d", n1);
+			};
+			n2 = 10;
+			testBlock2(); // 输出 10
+			
+	* 对于全局、静态变量的基本数据类型，读写都可。
+	* 对于引用类型，可能会对导致循环引用
+
+7. block的循环引用
+	
+	block默认创建在栈上，当在使用block时，有可能会将block拷贝（copy）到堆上，此时block中会对其外部的强引用类型进行强引用即引用计数会加1（retain），由此可能导致循环引用。如：self的循环引用。
+	
+	解决方法：
+	* 在MRC下，使用__block修饰引用的对象。
+	* 在ARC下，使用__unsafe_unretained/weak修饰引用对象。
+	
+	
+#### 循环引用出现的情景
+
+1. NSTimer: timer对象作为某个对象（obj）的属性，本意是在obj的dealloc中释放timer，但是timer没有停止就不会出发obj的dealloc，就导致了相互等待，造成循环引用。解决办法，显示的调用timer的停止方法（invaluate）。
+
+	NSTimer 会对target（无视修饰符weak等）进行retain操作，持有了target。
+	
+2. block: 会对引用类型进行retain操作，可配合weak使用。
+3. delegate: 使用assign（MRC）或者weak（ARC）修饰代理属性。
+
+		// 循环引用示例
+		NSMutableArray *one = [NSMutableArray array];
+		NSMutableArray *two = [NSMutableArray array];
+		[one addObject: two];
+		[two addObject: one];
+		
+
+#### ios中的多线程
