@@ -324,3 +324,45 @@ AudioToolbox.framework是基于C语言的框架。原理：将短音频注册到
 200及以上是正确。
 
 [Http状态码详细说明]("https://tool.oschina.net/commons?type=5")
+
+
+#### UDID与UUID
+
+* UDID（Unique Device Identifier）用户设备唯一编码
+* UUID (Universally Unique Identitifer) 通用唯一识别符
+
+		NSString *uuidString = [[[UIDevice currentDevice] identifierForVendor] UIIDString];
+
+		
+#### nil, Nil, NULL, NSNull
+
+1. nil: 一般只把一个空对象置空，完全从内存中释放。
+2. Nil: 基本与nil没什么区别。区别在于nil是置空一个对象，Nil是置空一个类。
+3. NULL: 源于c，表示一个空指针。 char *p = NULL;
+4. NSNull: 表示一个空的对象。 [array addObject:[NSNull new]];
+
+#### MRC和ARC内存管理
+
+ARC，自动引用计数（Automatic Refrence Counting)，省去了程序员手动管理内存的麻烦。
+
+* ARC项目： 加入MRC
+	
+	target->build phrases->compbile sources, 点击MRC的文件将其设置为-fno-objc-arc
+	
+* MRC项目： 加入ARC
+
+	target->build phrases->compbile sources, 点击ARC的文件将其设置为-fobjc-arc
+	
+
+ios通过引用计数来记录对象的引用，每次runloop完成一次循环时，都会对对象的retainCount进行检查，如果说对象的retainCount为0，说明该对象未被引用，就会释放掉。
+
+
+#### 黑盒测试与白盒测试
+
+* 黑盒测试：又称为功能测试，注意检查软件的每一个功能是否能正常使用。黑盒法是穷举输入测试，只有把所有可能的输入都作为测试情况使用，才能以这种方法查出程序中所有的错误。
+
+* 白盒测试：也称为结构测试，主要用于检测软件编码过程的错误。全面了解程序内部逻辑结构、对所有逻辑路径进行测试。
+
+
+#### 浅拷贝和深拷贝
+
