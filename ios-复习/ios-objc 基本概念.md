@@ -140,3 +140,187 @@
 		
 
 #### ios中的多线程
+
+1. 概念
+
+	多线程: 多线程是对于单核cpu来设计的，目的是为了让cpu在多个线程之间进行调度。提高cpu的利用率。
+	
+	##### 多线程的优缺点
+	
+	* 优点：提高程序的执行效率。
+	* 缺点：开启线程需要一定的时间和内存空间。会产生消费者生产者问题（资源竞争）。
+
+	##### 同步和异步
+	
+	决定了是否具备开启新的线程能力。
+	
+	* 同步：在当前线程中执行任务，不具备开启新线程的能力。
+	* 异步：在新的线程中执行任务，具备开启新线程的能力。
+
+	##### 并行和串行
+	
+	决定了任务的执行方式。
+	
+	* 并行：多个任务并发（同时）执行。
+	* 串行：任务一个一个执行。
+
+	##### 队列
+	
+	1. 串行队列
+		
+		* 同步执行：当前线程，一个一个执行
+		* 异步执行：其他线程（新线程），一个一个执行
+		
+	2. 并行队列
+
+		* 同步执行：当前线程，一个一个执行
+		* 异步执行：其他线程（新线程），同时执行
+
+	ios app中都是一个主线程，称为UI线程。那么主线程更新UI，显示或者刷新界面等。
+	
+	注意：不能将耗时的任务放在主线程上， 否则会存在卡顿现象。
+
+
+2. ios多线程编程技术
+
+	* posix thread：unix 多线程编程技术
+	* NSThread：直接操作线程对象，需要手动管理线程的生命周期，经常使用该方式查看线程信息。
+	* GCD(Grand Central Dispatch)：底层使用c来封装，使用灵活方便，效率高，性能好。可根据系统负荷来增减线程。
+	* Cocoa NSOperation：基于GCD的封装，面向对象方式，易于理解，多线程更高级的封装。将任务封装为NSOperation，添加到NSOperationQueue对象中。子类化NSOperation的设计，更具面向对象特性，拓展性强，能够更灵活控制线程开启、暂停、关闭等。适用用于复杂的项目中。
+
+3. 进程与线程
+
+	Progress和Thread，进程和线程是操作系统里的基本概念。
+	
+	##### 线程与进程的区别
+	
+	* 进程是操作系统资源分配的最小单位。是程序的执行活动。进程拥有独立运行所需的全部资源。各个进程有独立的地址空间。进程切换时，消耗资源大，效率低。一个可运行的app就是一个进程。
+	* 线程是进程的一部分，是处理器调度的基本单位。同一个进程里的所有线程共享该进程里的资源。单独的线程不能独立执行，必须依附于进程。
+
+	
+* 多进程，允许多个任务同时执行。
+* 多线程，允许单个任务分为不同的部分运行。
+
+
+#### 音频播放相关知识
+
+音频的播放从形式上分为音频播放和音乐播放。
+
+* 音频播放：通常时间短，不需要进度控制、循环控制。使用AudioToolbox.framework。
+* 音乐播放：通常时间长，需要进行精准控制。使用AVFoundation.framework。
+
+##### 音频播放
+
+AudioToolbox.framework是基于C语言的框架。原理：将短音频注册到系统声音服务（System Sound Service）中。
+
+系统声音服务（System Sound Service）是一种简单、底层的声音播放服务。
+
+* 音频播放时间不能超过30秒。
+* 数据必须是PCM或IMA4格式。
+* 音频格式必须打包成.caf, .aif, wav中的一种。
+
+
+##### 音乐播放
+
+1. 适合播放较大的音频
+2. 可以对音频进行精准的播放控制
+3. 使用AVFoundatation.framework中的AVAudioPlayer来实现。
+
+使用方式：
+
+1. 初始化AVAudioPlayer对象，通常是指定本地文件路径。
+2. 设置播放器属性，例如播放次数，音量大小等。
+3. 调用play方法播放。
+
+<span>注意：</span> AVAudioPlayer一次只能播放一个音频文件，所有的上一曲和下一曲都是通过创建多个AVAudioPlayer来实现的。
+
+
+#### 视频播放
+
+苹果为我们提供了多种方法来实现视频播放，包括MPMoviePlayerController，MPMoviePlayerViewController， AVPlayer， AVPlayerViewController等。但是MPMoviePlayerController与MPMoviePlayerViewController在ios9之后被废弃了。
+
+##### AVPlayer
+
+* 优点：接近底层，自定义UI更加灵活
+* 缺点：不自带控制UI，使用频繁
+* 使用：继承与NSObject，无法单独显示播放视频，需要借助AVPlayerLayer，添加图层到需要展示的图层上才能显示视频。
+
+
+##### AVPlayerViewController
+
+* 优点：自带播放控制UI，使用方便
+* 缺点：不能自定义UI
+
+* 使用：
+	1. 继承于UIViewController，作为视图控制器弹出播放界面，也可添加view的方式播放。
+	2. 需要设置AVPlayer成员变量，来创建AVPlayerViewController。
+
+
+#### oc中的反射机制
+
+1. class反射：通过类名字符串实例化对象
+
+		Class class = NSClassFromString(@"Student");
+		Student *student = [[class alloc] init];
+
+2. 类名转化字符串
+
+		Class class = [student class];
+		NSString *className = NSStringFromClass(class);
+		
+3. SEL的反射
+
+		SEL selector = NSSelectorFromClass(@"setName");
+		[student performSelector:selector withObject: nil];
+		
+4. 通过方法字符串形式实例化方法
+
+		NSString *selName = NSStringFromSelector(@selector(setName:));
+		
+
+#### 一个对象被创建的三个步骤
+
+1. 开辟内存空间。
+2. 初始化参数。
+3. 返回内存地址值。
+
+#### layouSubView何时调用
+
+1. 初始化的时候不会触发。
+2. 滚动UIScrollview时触发。
+3. 旋转屏幕时触发。
+4. 改变view的frame时会触发。
+
+#### oc动态运行时语言的理解
+
+1. oc将数据、对象类型的确定从编译阶段推迟到了运行时。
+2. 动态绑定，基于消息转发，可以动态的给对象绑定方法等。
+3. 动态加载，能够动态的创建类，加载类。
+
+#### 队列
+
+1. 主线程队列
+	
+	主线程队列为串行队列，和主线程绑定。同普通串行队列一样，队列中的任务一个一个执行。但是队列中的所有任务都是在主线程中执行（即使时通过异步添加到主线程队列的任务，也是在主线程执行）。
+	
+2. 全局队列
+
+	系统全局队列为并发队列，根据不同的优先级（HIGH, DEFAULT, LOW, BACKGROUND）有四个。
+	
+3. 自定义队列
+
+	系统提供方法，可以自定义创建串行和并行队列。
+	
+<span>注意：</span>
+
+1. 串行队列添加同步任务会导致死锁。
+2. 主队列中的所有任务都在主线程执行。
+
+#### 常见的http状态吗
+
+302是请求重定向
+500及以上是服务器错误，503表示服务器找不到，
+400及以上是请求连接错误或者找不到服务器，404
+200及以上是正确。
+
+[Http状态码详细说明]("https://tool.oschina.net/commons?type=5")
