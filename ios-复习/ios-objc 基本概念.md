@@ -448,3 +448,92 @@ ios中并非所有的对象都支持copy和mutableCopy，只有遵循了NSCopy�
 * Socket：客户端与服务器端直接使用socket套接字连接，双方都保持连接通道，都可主动发送数据，像游戏、股票等时时性强的就使用这个。主要使用CFSocketRef。GCDAsyncSocket。
 
 #### 通知和代理
+
+* 同：都用于对象之间的通信。
+* 异：代理适合一对一通信，通知是一对多。
+
+#### method和selector
+
+method包含了方法名和方法实现。selector只是方法选择子（一个方法名）。
+
+#### isKindOfClass与isMemberOfClass
+
+* isKindOfClass：确定一个对象是否是一个类的成员，或者是派生该类的成员（子类）
+* isMemeberOfClass：确定一个对象是否是当前类
+
+<span>注：</span>isMemeberOfClass只检查是否是当前类，isKindOfClass可向父类链进行检查。
+
+#### 面向过程和面向对象
+
+* 面向过程：以事件的过程为编程中心，各个功能是按照事件的先后顺序或因果关系进行的编程思想。
+*  面向对象：以对象为编程中心，以事件驱动，各个功能之间是相互独立的、模块化的一种编程思想。
+
+#### xcode中Project与Target
+
+* Project： 是一个项目的整体，相当于一个仓库，包含了所有的代码和资源文件。
+*  Target：相当于一个具体的产品，包含了对于代码、资源文件的具体的使用和配置。
+
+<span>注意：</span>一个Project可以包含多个Target，也就是说不同的Target可以生成不同的app或库。
+
+#### 类方法和实例方法
+
+* 类方法：调用时直接使用类名，不依赖任何实例对象。适合不需要访问成员变量或者改变实例状态时使用。
+* 实例方法：在一个类的具体实例范围内使用，使用前必须创建该对象。适合需要访问实例成员变量或者实例状态的时候使用。
+
+##### 使用注意
+
+1. 类方法可以调用类方法，但是不能调用实例的方法和实例变量。
+2. 类方法不可以调用实例方法，除非在其中创建对象来调用。
+3. 类方法和实例方法中都可以使用self，但是意义不同，类方法中的self是当前类，而实例方法中的self是该对象的首地址，也就是当前实例对象。
+
+
+#### laod和initialize方法 (参考DMRPractice demo)
+
+##### 相同点
+
+1. load和initialize会被自动调用，而不能手动调用它们。
+2. 子类实现load或者initialize方法的话，也会默认调用父类的。
+3. load和initialize方法内部使用了锁机制，所以是线程安全。
+
+##### 不同点 
+
+* 调用时机
+	
+	* load：load方法，在类或者类目所在的文件被引用（即运行时加载该类或类目）时被调用，在main函数调用去。
+	* initialize: initialize方法，只用在第一次向类发送消息（第一次调用）时才会调用，而且只会调用一次。在main函数之后。
+
+* 调用规则：
+
+	* load：
+
+		1. 主类、父类、类目只要被引用了，各自的load方法都会被调用。
+		2. load方法不遵循继承规则，如果子类本身没有实现load方法，不会调用父类的load方法。
+		3. load方法执行的优先级是，父类>子类>父类子类类目（按编译顺序调用）。
+
+	* initialize:
+		1. 遵循继承规则，但都只执行一次，子类未实现，则调用父类的。
+		2. 类目的initialize会覆盖主类的initialize方法。存在分类的情况下都调用各自分类最后编译的类目的initialize方法。且都是先调用父类，再到子类。
+		
+* 使用场景：
+	
+	* load：load方法在runtime实现Method Swizzing功能的使用。
+	* initialize：一般用于初始化全局变量或者静态变量。
+
+```
+// load和initialize 测试示例
+2020-09-05 00:01:56.614924+0800 DMRPractice[7482:187912] +[Person load]
+2020-09-05 00:01:56.615327+0800 DMRPractice[7482:187912] +[Student load]
+2020-09-05 00:01:56.615365+0800 DMRPractice[7482:187912] +[Person1 load]
+2020-09-05 00:01:56.615389+0800 DMRPractice[7482:187912] +[Person(Test1) load]
+2020-09-05 00:01:56.615413+0800 DMRPractice[7482:187912] +[Student(Test1) load]
+2020-09-05 00:01:56.615450+0800 DMRPractice[7482:187912] +[Student(Test2) load]
+2020-09-05 00:01:56.615492+0800 DMRPractice[7482:187912] +[Student(Test3) load]
+2020-09-05 00:01:56.615535+0800 DMRPractice[7482:187912] +[Person(Test3) load]
+2020-09-05 00:01:56.615631+0800 DMRPractice[7482:187912] main
+2020-09-05 00:01:56.615661+0800 DMRPractice[7482:187912] Hello, World!
+2020-09-05 00:01:56.615707+0800 DMRPractice[7482:187912] --------------- InitializeMethodTest ---------------
+2020-09-05 00:01:56.615806+0800 DMRPractice[7482:187912] +[DMRAnimal(Test2) initialize]
+2020-09-05 00:01:56.615873+0800 DMRPractice[7482:187912] +[DMRCat(Test1) initialize]
+2020-09-05 00:01:56.615973+0800 DMRPractice[7482:187912] +[DMRAnimal(Test2) initialize]
+Program ended with exit code: 0
+```
