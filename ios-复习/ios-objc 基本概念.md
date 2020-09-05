@@ -596,3 +596,24 @@ Program ended with exit code: 0
 	NSLog(@"%@", exception);
 } @finally {}
 ```
+
+#### 关闭默认KVO
+
+```
++ (BOOL)automaticallyNotifiesObserverForKey:(NSString *)key {
+	if ([key isEqualToString:@"xxx"]) {
+		return NO;
+	}
+	
+	return [super automaticallyNotifiesObserverForKey: key];
+}
+
+// 但是手动关闭实现的时候，需要自己调用下面的两个方法，才会调用监听方法
+- (void)willChangeValueForKey:(NSString *)key {
+	[super willChangeValueForKey: key];
+}
+
+- (void)didChangeValueForKey:(NSString *)key {
+	[super didChangeValueForKey: key];
+}
+```
