@@ -570,3 +570,29 @@ Program ended with exit code: 0
 3. 查看上一步的输出信息，如果出现了cpu架构为dynamically标识符的为动态库，否则就是静态库。
 ```
 
+-------------
+
+#### 内存优化方案
+
+1. 懒加载，延迟对象创建，按需创建。
+2. 复用，单元格复用，避免过多的创建对象
+3. 可变容器的使用要谨慎。
+4. 及时删除缓存信息。
+
+#### BAD_ACCESS的原因
+
+访问了野指针，比如已经释放的对象的成员变量或者发送消息。
+
+调试：Enaable zombie objects 、设置全局断点
+
+#### 解决报错libc++abi.dylib handler threw exception
+
+遇到这种错误，即使用了All Exceptions，也断点到相应的代码了，但是没打印对应的日志。此时我们可以添加如下的代码来打印异常log:
+
+```
+@try {
+	// 抛异常代码
+} @catch(NSException *exception) {
+	NSLog(@"%@", exception);
+} @finally {}
+```

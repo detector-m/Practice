@@ -54,4 +54,16 @@
 //    NSLog(@"%s", __func__);
 //}
 
++ (DMRDog *)share {
+    static DMRDog *_share;
+    
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        _share = [DMRDog new];
+    });
+
+    return _share;
+}
+
+
 @end
