@@ -617,3 +617,48 @@ Program ended with exit code: 0
 	[super didChangeValueForKey: key];
 }
 ```
+
+#### setNeedsDisplay和layoutIfNeeded
+
+UIView的setNeesDisplay和layoutIfNeeded两个方法都是异步执行。
+
+* setNeesDisplay: 会自动调用drawRect方法，这样可以拿到UIGraphicsGetCurrentContext进行绘制。
+
+* layoutIfNeeded：setNeedsLayout会默认调用layoutSubviews，给当前的视图做标记，layoutIfNeeded查找是否有标记，如果有标记就立即刷新。只用setNeedsLayout和layoutIfNeeded两者合起来用，才能立即刷新。
+
+#### UIResponder
+
+UIResponder类是专门用来响应用户的操作处理的各种事件，包括触摸事件（Touch Events）、运动事件（Motion Events）、远程控制事件（Remote Control Events）。
+
+#### keyWindow和delegate的window
+
+* delegate.window: 程序启动时设置的window
+* keyWindow：保存在[windows]数组中的UIWindow对象，该对象是最近被发送了makeKeyAndVisible消息。
+
+一般情况下，delegate.window和keyWindow是同一个对象，但不能保证keyWindow就是delegate.window,因为keyWindow会因为makeKeyAndVisible而变化。例如，程序中添加了一个悬浮窗口，这个时候keyWindow就会变化。
+
+#### js和oc互相调用（webview）
+
+* js调用oc的方式：
+
+	1. 通过scheme： 根据网页重定向截取字符串通过URL scheme判断。
+	2. WKUserContentController
+
+* oc调用js:
+	
+	evaluateJavaScript
+	
+#### @protocol和category中的@property
+
+* 在protocol中使用@property只会生成setter和getter方法的声明，我们使用属性的目的，是希望遵循协议的对象能够实现该属性。
+* category中使用@property只会生成setter和getter方法的声明。需要自行实现setter和getter方法。可以通过关联对象动态添加属性。
+
+#### kvc实现原理
+
+* kvc，键值编码，使用字符串直接访问对象的属性。
+* 底层实现，当一个对象调用setValue方法时：
+
+	1. 检查是否存在相应key的set方法，如果存在，直接调用。
+	2. 如果上一步不存在，就会查找与key相同名称且带下划线(_key)的属性，如果有直接给该属性赋值。
+	3. 如果没有找到_key,就会查找相同名称的属性key，如果有就知道赋值。
+	4. 如果都没有找到，则调用valueForUndefinedKey:和setValue:forUndefinedKey:方法。
