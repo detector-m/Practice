@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <Group
+      location = "group:ios-&#x590d;&#x4e60;"
+      name = "ios-&#x590d;&#x4e60;">
+      <FileRef
+         location = "group:&#x6570;&#x636e;&#x5b89;&#x5168;.md">
+      </FileRef>
+      <FileRef
+         location = "group:&#x6570;&#x636e;&#x7ed3;&#x6784;.md">
+      </FileRef>
+      <FileRef
+         location = "group:ios-objc &#x57fa;&#x672c;&#x6982;&#x5ff5;.md">
+      </FileRef>
+      <FileRef
+         location = "group:ios-objc-runtime.md">
+      </FileRef>
+      <FileRef
+         location = "group:&#x7b97;&#x6cd5;.md">
+      </FileRef>
+      <FileRef
+         location = "group:&#x667a;&#x80fd;&#x786c;&#x4ef6;.md">
+      </FileRef>
+   </Group>
    <FileRef
-      location = "group:DMRObserver/DMRObserver.xcodeproj">
+      location = "group:DMRRuntime/DMRRuntime.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:DMRPractice/DMRPractice.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:DMRObserver/DMRObserver.xcodeproj">
    </FileRef>
 </Workspace>
