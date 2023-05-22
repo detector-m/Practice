@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "DMRRTPrincipleTester.h"
 #import "DMRForwardMsgTester.h"
+#import "DMRAssociatedObjectTester.h"
 
 #import "DMRLoadMethodTest.h"
 #import "DMRInitializeMethodTest.h"
@@ -55,6 +56,8 @@ int main(int argc, const char * argv[]) {
         testForwardMsg1();
         testForwardMsg2();
         testForwardMsg3();
+        
+        [DMRAssociatedObjectTester rtAssociatedObjectTest];
         
 //        testLoadAndInitialize();
     }
