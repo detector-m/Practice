@@ -20,7 +20,6 @@ int main(int argc, const char * argv[]) {
         [DMRAnimal new];
         [DMRCat new];
         [DMRDog new];
-
     }
     return 0;
 }

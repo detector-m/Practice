@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DMRPerson : NSObject
 
+- (void)playTest;
+
 @end
 
 NS_ASSUME_NONNULL_END
