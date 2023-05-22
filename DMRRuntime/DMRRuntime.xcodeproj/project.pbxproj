@@ -13,6 +13,7 @@
 		9698C2292A1B0752001C2AC8 /* DMRLoadMethodTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9698C2262A1B0752001C2AC8 /* DMRLoadMethodTest.m */; };
 		9698C22A2A1B0752001C2AC8 /* DMRInitializeMethodTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9698C2272A1B0752001C2AC8 /* DMRInitializeMethodTest.m */; };
 		9698C22D2A1B38A6001C2AC8 /* DMRWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9698C22C2A1B38A6001C2AC8 /* DMRWorker.m */; };
+		9698C2302A1B499E001C2AC8 /* DMRForwardMsgTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 9698C22F2A1B499E001C2AC8 /* DMRForwardMsgTester.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +42,8 @@
 		9698C2282A1B0752001C2AC8 /* DMRInitializeMethodTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRInitializeMethodTest.h; sourceTree = "<group>"; };
 		9698C22B2A1B38A6001C2AC8 /* DMRWorker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMRWorker.h; sourceTree = "<group>"; };
 		9698C22C2A1B38A6001C2AC8 /* DMRWorker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMRWorker.m; sourceTree = "<group>"; };
+		9698C22E2A1B499E001C2AC8 /* DMRForwardMsgTester.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMRForwardMsgTester.h; sourceTree = "<group>"; };
+		9698C22F2A1B499E001C2AC8 /* DMRForwardMsgTester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMRForwardMsgTester.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,8 @@
 		9698C2242A1AFC74001C2AC8 /* 消息转发机制 */ = {
 			isa = PBXGroup;
 			children = (
+				9698C22E2A1B499E001C2AC8 /* DMRForwardMsgTester.h */,
+				9698C22F2A1B499E001C2AC8 /* DMRForwardMsgTester.m */,
 			);
 			path = "消息转发机制";
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 				9698C22A2A1B0752001C2AC8 /* DMRInitializeMethodTest.m in Sources */,
 				9698C22D2A1B38A6001C2AC8 /* DMRWorker.m in Sources */,
 				9695057A2A18D0EB001DCC88 /* DMRPerson.m in Sources */,
+				9698C2302A1B499E001C2AC8 /* DMRForwardMsgTester.m in Sources */,
 				9695057D2A18D22E001DCC88 /* DMRRTPrincipleTester.m in Sources */,
 				9698C2292A1B0752001C2AC8 /* DMRLoadMethodTest.m in Sources */,
 				969505702A18B9F4001DCC88 /* main.m in Sources */,

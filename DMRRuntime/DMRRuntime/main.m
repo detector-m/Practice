@@ -7,14 +7,17 @@
 
 #import <Foundation/Foundation.h>
 #import "DMRRTPrincipleTester.h"
+#import "DMRForwardMsgTester.h"
 
 #import "DMRLoadMethodTest.h"
 #import "DMRInitializeMethodTest.h"
+
 #import "DMRPerson.h"
 #import "DMRWorker.h"
 
 void testRTMsgSend(void);
 
+#if false
 // 动态加载方法
 void testAddMethod1(void);
 void testAddMethod2(void);
@@ -29,6 +32,7 @@ void testAddInstanceMethod3(void);
 void testForwardMsg1(void);
 void testForwardMsg2(void);
 void testForwardMsg3(void);
+#endif
 
 void testLoadAndInitialize(void);
 
@@ -63,6 +67,7 @@ void testRTMsgSend() {
 }
 
 // MARK: - 消息转发
+#if false
 // 动态加载方法
 void testAddMethod1() {
     [DMRPerson performSelector:@selector(jump)];
@@ -108,6 +113,8 @@ void testForwardMsg3() {
     DMRWorker *t = [DMRWorker new];
     [t performSelector:@selector(jumpTo)];
 }
+
+#endif
 
 void testLoadAndInitialize() {
     NSLog(@"--------------- InitializeMethodTest ---------------");
