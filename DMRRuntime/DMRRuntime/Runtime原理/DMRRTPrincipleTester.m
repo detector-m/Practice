@@ -7,7 +7,9 @@
 
 #import "DMRRTPrincipleTester.h"
 #import <objc/message.h>
+#import <malloc/malloc.h>
 #import "DMRPerson.h"
+#import "DMRPerson+AssociatedObject.h"
 
 @implementation DMRRTPrincipleTester
 
@@ -33,6 +35,15 @@
 
     tPersion2 = objc_msgSend(tPersion1, sel_registerName("init"));
     objc_msgSend(tPersion2, @selector(run:), 10);
+    
+    tPersion2.name = @"abc-abc";
+    NSLog(@"ttttttt - name = %@   1", tPersion2.name);
+    
+//    size_t size = class_getInstanceSize([tPersion2 class]);
+//    size = sizeof(tPersion2);
+//    size = malloc_size((__bridge void *)tPersion2);
+//    DMRPerson *tp3 = object_copyFromZone(tPersion2, size, NULL);
+//    NSLog(@"ttttttt - name = %@   2", tp3.name);
 }
 
 @end

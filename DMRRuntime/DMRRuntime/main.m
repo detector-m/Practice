@@ -42,7 +42,7 @@ int main(int argc, const char * argv[]) {
         // insert code here...
         NSLog(@"Hello, World!");
         
-//        testRTMsgSend();
+        testRTMsgSend();
         
         testAddMethod1();
         testAddMethod2();
