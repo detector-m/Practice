@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		96946D812A1C5CDE00B88494 /* DMRPlant+MethodSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 96946D802A1C5CDE00B88494 /* DMRPlant+MethodSwizzling.m */; };
 		969505702A18B9F4001DCC88 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9695056F2A18B9F4001DCC88 /* main.m */; };
 		9695057A2A18D0EB001DCC88 /* DMRPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 969505792A18D0EB001DCC88 /* DMRPerson.m */; };
 		9695057D2A18D22E001DCC88 /* DMRRTPrincipleTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 9695057C2A18D22E001DCC88 /* DMRRTPrincipleTester.m */; };
@@ -33,6 +34,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		96946D7F2A1C5CDE00B88494 /* DMRPlant+MethodSwizzling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DMRPlant+MethodSwizzling.h"; sourceTree = "<group>"; };
+		96946D802A1C5CDE00B88494 /* DMRPlant+MethodSwizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DMRPlant+MethodSwizzling.m"; sourceTree = "<group>"; };
 		9695056C2A18B9F4001DCC88 /* DMRRuntime */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DMRRuntime; sourceTree = BUILT_PRODUCTS_DIR; };
 		9695056F2A18B9F4001DCC88 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		969505772A18C795001DCC88 /* runtime.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = runtime.md; sourceTree = "<group>"; };
@@ -69,6 +72,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		96946D7E2A1C58CE00B88494 /* 方法交换-MethodSwizzling */ = {
+			isa = PBXGroup;
+			children = (
+				96946D7F2A1C5CDE00B88494 /* DMRPlant+MethodSwizzling.h */,
+				96946D802A1C5CDE00B88494 /* DMRPlant+MethodSwizzling.m */,
+			);
+			path = "方法交换-MethodSwizzling";
+			sourceTree = "<group>";
+		};
 		969505632A18B9F4001DCC88 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +111,7 @@
 				969505762A18BCAE001DCC88 /* Runtime原理 */,
 				9698C2242A1AFC74001C2AC8 /* 消息转发机制 */,
 				9698C2232A1AFAD2001C2AC8 /* load与initialize */,
+				96946D7E2A1C58CE00B88494 /* 方法交换-MethodSwizzling */,
 				9698C2312A1B4B70001C2AC8 /* 动态关联属性-AssociatedObject */,
 			);
 			path = DMRRuntime;
@@ -207,6 +220,7 @@
 				9698C22A2A1B0752001C2AC8 /* DMRInitializeMethodTest.m in Sources */,
 				9698C23D2A1B54EC001C2AC8 /* DMRPlant.m in Sources */,
 				9698C22D2A1B38A6001C2AC8 /* DMRWorker.m in Sources */,
+				96946D812A1C5CDE00B88494 /* DMRPlant+MethodSwizzling.m in Sources */,
 				9695057A2A18D0EB001DCC88 /* DMRPerson.m in Sources */,
 				9698C2342A1B50B0001C2AC8 /* DMRPerson+AssociatedObject.m in Sources */,
 				9698C2302A1B499E001C2AC8 /* DMRForwardMsgTester.m in Sources */,

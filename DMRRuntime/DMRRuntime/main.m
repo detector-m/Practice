@@ -15,6 +15,7 @@
 
 #import "DMRPerson.h"
 #import "DMRWorker.h"
+#import "DMRPlant+MethodSwizzling.h"
 
 void testRTMsgSend(void);
 
@@ -37,6 +38,9 @@ void testForwardMsg3(void);
 
 void testLoadAndInitialize(void);
 
+void testAssociatedObject(void);
+void testMethodSwizzling(void);
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // insert code here...
@@ -57,9 +61,10 @@ int main(int argc, const char * argv[]) {
         testForwardMsg2();
         testForwardMsg3();
         
-        [DMRAssociatedObjectTester rtAssociatedObjectTest];
-        
-//        testLoadAndInitialize();
+        //        testLoadAndInitialize();
+
+        testAssociatedObject();
+        testMethodSwizzling();
     }
     return 0;
 }
@@ -124,4 +129,13 @@ void testLoadAndInitialize() {
     [DMRAnimal new];
     [DMRCat new];
     [DMRDog new];
+}
+
+void testAssociatedObject() {
+    [DMRAssociatedObjectTester rtAssociatedObjectTest];
+}
+
+void testMethodSwizzling() {
+    DMRPlant *tp = [DMRPlant new];
+    [tp grow];
 }

@@ -74,3 +74,9 @@ Runtime 是 OC 核心运行机制之一，OC 加载库、加载类、执行和�
 2020-09-05 00:01:56.615973+0800 DMRPractice[7482:187912] +[DMRAnimal(Test2) initialize]
 Program ended with exit code: 0
 ```
+
+## 三、方法交换（MethodSwizzling）
+
+方法交换：在运行时将一个方法的实现替换成另一个方法的实现。每个方法都是由方法选择子（SEL）和方法实现（IMP）组合而成。方法交换就是将 SEL 与原来 IMP 断开，进而将 SEL 与 新的 IMP 组合成新的方法。
+
+AOP：面向切面编程就是使用了该方式。AOP 是面向切面提取、封装，提取各个模块中的公用部分，提高模块的复用率，降低业务之间的耦合。

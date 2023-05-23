@@ -9,4 +9,8 @@
 
 @implementation DMRPlant
 
+- (void)grow {
+    NSLog(@"%s, 生长", __func__);
+}
+
 @end

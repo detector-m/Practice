@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DMRPlant : NSObject
 
+- (void)grow;
+
 @end
 
 NS_ASSUME_NONNULL_END
