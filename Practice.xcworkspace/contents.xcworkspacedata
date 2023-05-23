@@ -24,6 +24,9 @@
       </FileRef>
    </Group>
    <FileRef
+      location = "group:DMRThread/DMRThread.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:DMRRuntime/DMRRuntime.xcodeproj">
    </FileRef>
    <FileRef
