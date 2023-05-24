@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		96946DCA2A1CA8DD00B88494 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96946DC92A1CA8DD00B88494 /* main.m */; };
 		96946DD42A1CA98400B88494 /* DMRNSThreadTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 96946DD32A1CA98400B88494 /* DMRNSThreadTester.m */; };
+		9694A73C2A1DB25E00DC3EF0 /* DMRGCDTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 9694A73B2A1DB25E00DC3EF0 /* DMRGCDTester.m */; };
+		9694A7412A1DDB1300DC3EF0 /* DMRNSOperationTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 9694A7402A1DDB1300DC3EF0 /* DMRNSOperationTester.m */; };
+		9694A7442A1DE21A00DC3EF0 /* DMRCustomOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9694A7432A1DE21A00DC3EF0 /* DMRCustomOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +31,13 @@
 		96946DC92A1CA8DD00B88494 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		96946DD22A1CA98400B88494 /* DMRNSThreadTester.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMRNSThreadTester.h; sourceTree = "<group>"; };
 		96946DD32A1CA98400B88494 /* DMRNSThreadTester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMRNSThreadTester.m; sourceTree = "<group>"; };
+		9694A73A2A1DB25E00DC3EF0 /* DMRGCDTester.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMRGCDTester.h; sourceTree = "<group>"; };
+		9694A73B2A1DB25E00DC3EF0 /* DMRGCDTester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMRGCDTester.m; sourceTree = "<group>"; };
+		9694A73D2A1DB9F800DC3EF0 /* 多线程.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "多线程.md"; sourceTree = "<group>"; };
+		9694A73F2A1DDB1300DC3EF0 /* DMRNSOperationTester.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMRNSOperationTester.h; sourceTree = "<group>"; };
+		9694A7402A1DDB1300DC3EF0 /* DMRNSOperationTester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMRNSOperationTester.m; sourceTree = "<group>"; };
+		9694A7422A1DE21A00DC3EF0 /* DMRCustomOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMRCustomOperation.h; sourceTree = "<group>"; };
+		9694A7432A1DE21A00DC3EF0 /* DMRCustomOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMRCustomOperation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +70,9 @@
 		96946DC82A1CA8DD00B88494 /* DMRThread */ = {
 			isa = PBXGroup;
 			children = (
+				9694A73D2A1DB9F800DC3EF0 /* 多线程.md */,
 				96946DC92A1CA8DD00B88494 /* main.m */,
+				9694A73E2A1DBE9F00DC3EF0 /* NSOperation-NSOperationQueue */,
 				96946DD12A1CA94200B88494 /* GCD */,
 				96946DD02A1CA92700B88494 /* NSThread */,
 			);
@@ -79,8 +91,21 @@
 		96946DD12A1CA94200B88494 /* GCD */ = {
 			isa = PBXGroup;
 			children = (
+				9694A73A2A1DB25E00DC3EF0 /* DMRGCDTester.h */,
+				9694A73B2A1DB25E00DC3EF0 /* DMRGCDTester.m */,
 			);
 			path = GCD;
+			sourceTree = "<group>";
+		};
+		9694A73E2A1DBE9F00DC3EF0 /* NSOperation-NSOperationQueue */ = {
+			isa = PBXGroup;
+			children = (
+				9694A73F2A1DDB1300DC3EF0 /* DMRNSOperationTester.h */,
+				9694A7402A1DDB1300DC3EF0 /* DMRNSOperationTester.m */,
+				9694A7422A1DE21A00DC3EF0 /* DMRCustomOperation.h */,
+				9694A7432A1DE21A00DC3EF0 /* DMRCustomOperation.m */,
+			);
+			path = "NSOperation-NSOperationQueue";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,7 +166,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				96946DCA2A1CA8DD00B88494 /* main.m in Sources */,
+				9694A7412A1DDB1300DC3EF0 /* DMRNSOperationTester.m in Sources */,
 				96946DD42A1CA98400B88494 /* DMRNSThreadTester.m in Sources */,
+				9694A7442A1DE21A00DC3EF0 /* DMRCustomOperation.m in Sources */,
+				9694A73C2A1DB25E00DC3EF0 /* DMRGCDTester.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
