@@ -1,5 +1,7 @@
 ## App 启动
 
+App 启动：系统内核创建该 App 的进程，并启动该进程。再执行如下流程。
+
 App 的冷启动可概括为3个阶段： dyld，runtime，main
 
 ### 1、dyld
